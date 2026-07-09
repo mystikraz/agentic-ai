@@ -78,17 +78,17 @@ Blood Report:
             extraction_response = llm.invoke(extraction_prompt)
             extracted_values = extraction_response.text
 
-            # Stage 2: Health summary and Indian diet plan
+            # Stage 2: Health summary and Nepali diet plan
             diet_prompt = f"""
-You are a clinical nutritionist specializing in Indian dietary habits.
+You are a clinical nutritionist specializing in Nepali dietary habits.
 
 Based on the blood work analysis below, provide two clearly separated sections:
 
 SECTION 1 - HEALTH SUMMARY:
 Write 4-5 lines explaining the patient's condition in simple, non-technical language.
 
-SECTION 2 - INDIAN DIET PLAN:
-List foods to eat more of and foods to avoid, using commonly available Indian foods
+SECTION 2 - Nepali DIET PLAN:
+List foods to eat more of and foods to avoid, using commonly available Nepali foods
 like dal, sabzi, roti, rice, etc. Keep it practical and concise.
 
 Blood Work Analysis:
@@ -101,7 +101,7 @@ Blood Work Analysis:
         if "SECTION 2" in full_response:
             parts = full_response.split("SECTION 2")
             health_summary = parts[0].replace("SECTION 1 - HEALTH SUMMARY:", "").replace("SECTION 1", "").strip()
-            diet_plan = ("SECTION 2" + parts[1]).replace("SECTION 2 - INDIAN DIET PLAN:", "").replace("SECTION 2", "").strip()
+            diet_plan = ("SECTION 2" + parts[1]).replace("SECTION 2 - Nepali DIET PLAN:", "").replace("SECTION 2", "").strip()
         else:
             health_summary = full_response
             diet_plan = ""
